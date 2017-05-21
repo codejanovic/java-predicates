@@ -100,7 +100,7 @@ public class StringPredicatesTest {
 
     @Test
     public void testAny() {
-        assertThat(checking.notEmpty()).accepts("a").rejects(" ", "");
+        assertThat(checking.isNotEmpty()).accepts("a").rejects(" ", "");
     };
 
 }

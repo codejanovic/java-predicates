@@ -29,6 +29,14 @@ public interface Predicates {
         return this;
     }
 
+    default Predicates when() {
+        return this;
+    }
+
+    default Predicates valid() {
+        return this;
+    }
+
     final class Default implements Predicates {
         private final StringPredicates stringPredicates;
         private final IntegerPredicates integerPredicates;

@@ -5,6 +5,8 @@ import io.github.codejanovic.java.predicates.primitives.IntegerPredicates;
 import io.github.codejanovic.java.predicates.primitives.StringPredicates;
 import org.junit.Test;
 
+import java.util.function.Predicate;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.jusecase.Builders.a;
 import static org.jusecase.Builders.list;
@@ -36,7 +38,7 @@ public class PredicatesTest {
     @Test
     public void testFluentCollectionPredicate() {
         final CollectionPredicates it = well.collection();
-        assertThat(well.let().ensure().that().collection().isNotNull()
+        assertThat(well.let().ensure().valid().when().collection().isNotNull()
                     .and(it.isNotEmpty())
                     .and(it.containsAnyOf("one", "two"))
                     .and(it.containsNoneOf("three", "four")))

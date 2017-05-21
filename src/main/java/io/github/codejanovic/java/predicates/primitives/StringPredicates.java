@@ -24,7 +24,7 @@ public interface StringPredicates {
     Predicate<String> contains(final String inner);
     Predicate<String> containsIgnoreCase(final String inner);
     Predicate<String> isEmpty();
-    Predicate<String> notEmpty();
+    Predicate<String> isNotEmpty();
     Predicate<String> isNull();
     Predicate<String> isNotNull();
 
@@ -101,7 +101,7 @@ public interface StringPredicates {
         }
 
         @Override
-        public Predicate<String> notEmpty() {
+        public Predicate<String> isNotEmpty() {
             return outer -> isEmpty().negate().test(outer);
         }
 
