@@ -1,14 +1,20 @@
-package io.github.codejanovic.java.predicates.collections;
+package io.github.codejanovic.java.predicates.testcases;
 
-import io.github.codejanovic.java.predicates.Predicates;
+import io.github.codejanovic.java.predicates.collections.ArrayPredicates;
 import org.junit.Test;
 
 import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ArrayPredicatesTest {
-    private final ArrayPredicates checking = new Predicates.Default().array();
+public abstract class AbstractArrayPredicatesTestcase {
+    protected final ArrayPredicates checking;
+
+    protected AbstractArrayPredicatesTestcase() {
+        checking = provideArrayPredicates();
+    }
+
+    protected abstract ArrayPredicates provideArrayPredicates();
 
     @Test
     public void testHasLength() {

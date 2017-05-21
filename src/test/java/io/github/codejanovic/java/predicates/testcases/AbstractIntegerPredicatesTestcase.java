@@ -1,13 +1,20 @@
-package io.github.codejanovic.java.predicates.primitives;
+package io.github.codejanovic.java.predicates.testcases;
 
 import io.github.codejanovic.java.predicates.Predicates;
+import io.github.codejanovic.java.predicates.primitives.IntegerPredicates;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class IntegerPredicatesTest {
-    private final IntegerPredicates checking = new Predicates.Default().integer();
+public abstract class AbstractIntegerPredicatesTestcase {
+    protected final IntegerPredicates checking;
+
+    protected AbstractIntegerPredicatesTestcase() {
+        checking = provideIntegerPredicates();
+    }
+
+    protected abstract IntegerPredicates provideIntegerPredicates();
 
     @Test
     public void testIsGreaterThan() {

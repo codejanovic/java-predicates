@@ -1,13 +1,20 @@
-package io.github.codejanovic.java.predicates.objects;
+package io.github.codejanovic.java.predicates.testcases;
 
 import io.github.codejanovic.java.predicates.Predicates;
+import io.github.codejanovic.java.predicates.objects.ObjectPredicates;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class ObjectPredicatesTest {
-    private final ObjectPredicates checking = new Predicates.Default().object();
+public abstract class AbstractObjectPredicatesTestcase {
+    protected final ObjectPredicates checking;
+
+    protected AbstractObjectPredicatesTestcase() {
+        checking = provideObjectPredicates();
+    }
+
+    protected abstract ObjectPredicates provideObjectPredicates();
 
     @Test
     public void testIsNull(){

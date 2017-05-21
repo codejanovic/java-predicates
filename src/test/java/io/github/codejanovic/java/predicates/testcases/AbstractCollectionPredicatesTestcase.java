@@ -1,6 +1,7 @@
-package io.github.codejanovic.java.predicates.collections;
+package io.github.codejanovic.java.predicates.testcases;
 
 import io.github.codejanovic.java.predicates.Predicates;
+import io.github.codejanovic.java.predicates.collections.CollectionPredicates;
 import org.junit.Test;
 
 import java.util.Collections;
@@ -11,11 +12,14 @@ import static org.jusecase.Builders.a;
 import static org.jusecase.Builders.list;
 import static org.jusecase.Builders.of;
 
-public class CollectionPredicatesTest {
-    private final CollectionPredicates checking = new Predicates.Default().collection();
-    private final List<String> listWithTwoElements = a(list(of("two", "elements")));
-    private final List<String> listWithOneElement = a(list(of("one element")));
-    private final List<String> emptyList = Collections.emptyList();
+public abstract class AbstractCollectionPredicatesTestcase {
+    protected final CollectionPredicates checking;
+
+    protected AbstractCollectionPredicatesTestcase() {
+        checking = provideCollectionPredicates();
+    }
+
+    protected abstract CollectionPredicates provideCollectionPredicates();
 
     @Test
     public void testHasSize() {
@@ -55,26 +59,39 @@ public class CollectionPredicatesTest {
 
     @Test
     public void testEquals() {
+        final List<String> listWithTwoElements = a(list(of("two", "elements")));
+        final List<String> listWithOneElement = a(list(of("one element")));
         assertThat(checking.equals(listWithTwoElements)).accepts(listWithTwoElements).rejects(listWithOneElement);
     }
 
     @Test
     public void testContains() {
+        final List<String> listWithOneElement = a(list(of("one element")));
+        final List<String> emptyList = Collections.emptyList();
         assertThat(checking.contains("one element")).accepts(listWithOneElement).rejects(emptyList);
     }
 
     @Test
     public void testContainsAllOf() {
+        final List<String> listWithTwoElements = a(list(of("two", "elements")));
+        final List<String> listWithOneElement = a(list(of("one element")));
+        final List<String> emptyList = Collections.emptyList();
         assertThat(checking.containsAllOf("two", "elements")).accepts(listWithTwoElements).rejects(emptyList, listWithOneElement);
     }
 
     @Test
     public void testContainsAnyOf() {
+        final List<String> listWithTwoElements = a(list(of("two", "elements")));
+        final List<String> listWithOneElement = a(list(of("one element")));
+        final List<String> emptyList = Collections.emptyList();
         assertThat(checking.containsAnyOf("two", "one element")).accepts(listWithTwoElements, listWithOneElement).rejects(emptyList);
     }
 
     @Test
     public void testContainsNoneOf() {
+        final List<String> listWithTwoElements = a(list(of("two", "elements")));
+        final List<String> listWithOneElement = a(list(of("one element")));
+        final List<String> emptyList = Collections.emptyList();
         assertThat(checking.containsNoneOf("two", "one element")).accepts(emptyList).rejects(listWithTwoElements, listWithOneElement);
     }
 
