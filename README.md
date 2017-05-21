@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/codejanovic/java-predicates.svg?branch=develop)](https://travis-ci.org/codejanovic/java-predicates)
 [![Coverage Status](https://coveralls.io/repos/github/codejanovic/java-predicates/badge.svg?branch=develop)](https://coveralls.io/github/codejanovic/java-predicates?branch=develop)
+[![Code Climate](https://codeclimate.com/github/codejanovic/java-predicates/badges/gpa.svg)](https://codeclimate.com/github/codejanovic/java-predicates)
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)]()
 
 
