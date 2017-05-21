@@ -7,6 +7,24 @@
 # java-predicates
 collection of predefined predicates for all basic types
 
+## Maven
+Release artifact
+```xml
+<dependency>
+    <groupId>io.github.codejanovic</groupId>
+    <artifactId>java-predicates</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+Snapshot artifact
+```xml
+<dependency>
+    <groupId>io.github.codejanovic</groupId>
+    <artifactId>java-predicates</artifactId>
+    <version>0.2.0-SNAPSHOT</version>
+</dependency>
+```
+
 ## Motivation
 The motivation behind this project is to achieve a more readable and maintainable way of chaining checks on all kind of  basic types (`primitives`, `strings`, `arrays`, etc ) we use in our everyday code, by providing predefined `Predicate<T>` implementations.
 
