@@ -13,6 +13,22 @@ public interface Predicates {
     ObjectPredicates object();
     CollectionPredicates collection();
 
+    default Predicates let() {
+        return this;
+    }
+
+    default Predicates ensure() {
+        return this;
+    }
+
+    default Predicates check() {
+        return this;
+    }
+
+    default Predicates that() {
+        return this;
+    }
+
     final class Default implements Predicates {
         private final StringPredicates stringPredicates;
         private final IntegerPredicates integerPredicates;

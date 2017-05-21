@@ -2,6 +2,7 @@ package io.github.codejanovic.java.predicates.collections;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 public interface CollectionPredicates {
@@ -18,8 +19,11 @@ public interface CollectionPredicates {
     <T> Predicate<Collection<T>> containsAnyOf(final T... elements);
     <T> Predicate<Collection<T>> containsNoneOf(final Collection<T> elements);
     <T> Predicate<Collection<T>> containsNoneOf(final T... elements);
-    <T> Predicate<Collection<T>> empty();
-    <T> Predicate<Collection<T>> any();
+    <T> Predicate<Collection<T>> isEmpty();
+    <T> Predicate<Collection<T>> isNotEmpty();
+    <T> Predicate<Collection<T>> isNull();
+    <T> Predicate<Collection<T>> isNotNull();
+
 
     final class Default implements CollectionPredicates {
 
@@ -89,13 +93,24 @@ public interface CollectionPredicates {
         }
 
         @Override
-        public <T> Predicate<Collection<T>> empty() {
+        public <T> Predicate<Collection<T>> isEmpty() {
             return Collection::isEmpty;
         }
 
         @Override
-        public <T> Predicate<Collection<T>> any() {
+        public <T> Predicate<Collection<T>> isNotEmpty() {
             return outer -> !outer.isEmpty();
         }
+
+        @Override
+        public <T> Predicate<Collection<T>> isNull() {
+            return Objects::isNull;
+        }
+
+        @Override
+        public <T> Predicate<Collection<T>> isNotNull() {
+            return Objects::nonNull;
+        }
+
     }
 }

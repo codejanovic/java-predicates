@@ -17,7 +17,7 @@ public class ObjectPredicatesTest {
 
     @Test
     public void testIsNotNull() {
-        assertThat(checking.isNull().negate().test(null)).isFalse();
-        assertThat(checking.isNull().negate().test(new Object())).isTrue();
+        assertThat(checking.isNotNull().test(null)).isFalse();
+        assertThat(checking.isNotNull().test(new Object())).isTrue();
     }
 }

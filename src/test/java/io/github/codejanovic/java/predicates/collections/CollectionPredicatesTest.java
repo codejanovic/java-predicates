@@ -3,10 +3,8 @@ package io.github.codejanovic.java.predicates.collections;
 import io.github.codejanovic.java.predicates.Predicates;
 import org.junit.Test;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.jusecase.Builders.a;
@@ -84,13 +82,13 @@ public class CollectionPredicatesTest {
     public void testEmpty() {
         final List<Object> emptyList = Collections.emptyList();
         final List<Object> listWithOneElement = a(list(of("one element")));
-        assertThat(checking.empty()).accepts(emptyList).rejects(listWithOneElement);
+        assertThat(checking.isEmpty()).accepts(emptyList).rejects(listWithOneElement);
     }
 
     @Test
     public void testAny() {
         final List<Object> emptyList = Collections.emptyList();
         final List<Object> listWithOneElement = a(list(of("one element")));
-        assertThat(checking.any()).accepts(listWithOneElement).rejects(emptyList);
+        assertThat(checking.isNotEmpty()).accepts(listWithOneElement).rejects(emptyList);
     }
 }

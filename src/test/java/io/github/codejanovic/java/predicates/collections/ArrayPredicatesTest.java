@@ -3,7 +3,6 @@ package io.github.codejanovic.java.predicates.collections;
 import io.github.codejanovic.java.predicates.Predicates;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -68,12 +67,12 @@ public class ArrayPredicatesTest {
 
     @Test
     public void testEmpty() {
-        assertThat(checking.empty()).accepts(new Object[0]).rejects(new Object[1]);
+        assertThat(checking.isEmpty()).accepts(new Object[0]).rejects(new Object[1]);
     }
 
     @Test
     public void testAny() {
-        assertThat(checking.any()).accepts(new Object[1]).rejects(new Object[0]);
+        assertThat(checking.isNotEmpty()).accepts(new Object[1]).rejects(new Object[0]);
     }
 
 

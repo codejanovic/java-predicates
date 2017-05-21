@@ -5,7 +5,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.UUID;
-import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -71,17 +70,17 @@ public class StringPredicatesTest {
 
     @Test
     public void testIsBoolean() {
-        assertThat(checking.isBoolean()).accepts("true", "false", "TRUE", "FALSE").rejects("any", "other", "text");
+        assertThat(checking.isBoolean()).accepts("true", "false", "TRUE", "FALSE").rejects("isNotEmpty", "other", "text");
     };
 
     @Test
     public void testIsInteger() {
-        assertThat(checking.isInteger()).accepts("1", "2", "3").rejects("any", "text");
+        assertThat(checking.isInteger()).accepts("1", "2", "3").rejects("isNotEmpty", "text");
     };
 
     @Test
     public void testIsUUID() {
-        assertThat(checking.isUUID()).accepts(UUID.randomUUID().toString()).rejects("any", "invalid", "UUID");
+        assertThat(checking.isUUID()).accepts(UUID.randomUUID().toString()).rejects("isNotEmpty", "invalid", "UUID");
     };
 
     @Test
@@ -96,12 +95,12 @@ public class StringPredicatesTest {
 
     @Test
     public void testEmpty() {
-        assertThat(checking.empty()).accepts(" ", "").rejects("a");
+        assertThat(checking.isEmpty()).accepts(" ", "").rejects("a");
     };
 
     @Test
     public void testAny() {
-        assertThat(checking.any()).accepts("a").rejects(" ", "");
+        assertThat(checking.notEmpty()).accepts("a").rejects(" ", "");
     };
 
 }

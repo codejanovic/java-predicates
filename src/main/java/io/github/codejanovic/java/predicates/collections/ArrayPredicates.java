@@ -14,8 +14,8 @@ public interface ArrayPredicates {
     <T> Predicate<T[]> containsAllOf(final T... elements);
     <T> Predicate<T[]> containsAnyOf(final T... elements);
     <T> Predicate<T[]> containsNoneOf(final T... elements);
-    <T> Predicate<T[]> empty();
-    <T> Predicate<T[]> any();
+    <T> Predicate<T[]> isEmpty();
+    <T> Predicate<T[]> isNotEmpty();
 
     final class Default implements ArrayPredicates {
 
@@ -70,13 +70,13 @@ public interface ArrayPredicates {
         }
 
         @Override
-        public <T> Predicate<T[]> empty() {
+        public <T> Predicate<T[]> isEmpty() {
             return outer -> outer.length == 0;
         }
 
         @Override
-        public <T> Predicate<T[]> any() {
-            return outer -> empty().negate().test(outer);
+        public <T> Predicate<T[]> isNotEmpty() {
+            return outer -> isEmpty().negate().test(outer);
         }
     }
 }

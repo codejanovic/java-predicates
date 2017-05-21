@@ -2,6 +2,7 @@ package io.github.codejanovic.java.predicates.primitives;
 
 import io.github.codejanovic.java.predicates.helper.Throws;
 
+import java.util.Objects;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -22,8 +23,10 @@ public interface StringPredicates {
     Predicate<String> isUUID();
     Predicate<String> contains(final String inner);
     Predicate<String> containsIgnoreCase(final String inner);
-    Predicate<String> empty();
-    Predicate<String> any();
+    Predicate<String> isEmpty();
+    Predicate<String> notEmpty();
+    Predicate<String> isNull();
+    Predicate<String> isNotNull();
 
     final class Default implements StringPredicates {
         public Predicate<String> equals(final String inner) {
@@ -93,13 +96,23 @@ public interface StringPredicates {
         }
 
         @Override
-        public Predicate<String> empty() {
+        public Predicate<String> isEmpty() {
             return outer -> outer.trim().isEmpty();
         }
 
         @Override
-        public Predicate<String> any() {
-            return outer -> empty().negate().test(outer);
+        public Predicate<String> notEmpty() {
+            return outer -> isEmpty().negate().test(outer);
+        }
+
+        @Override
+        public Predicate<String> isNull() {
+            return Objects::isNull;
+        }
+
+        @Override
+        public Predicate<String> isNotNull() {
+            return Objects::nonNull;
         }
     }
 }
