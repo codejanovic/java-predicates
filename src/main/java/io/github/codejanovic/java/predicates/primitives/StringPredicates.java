@@ -45,12 +45,14 @@ public interface StringPredicates {
             return outer -> outer.endsWith(inner);
         }
 
+        //TODO: needs an alternative implementation due to locale issues on toLowerCase()
         public Predicate<String> startsWithIgnoreCase(final String inner) {
-            return outer -> outer.startsWith(inner);
+            return outer -> outer.toLowerCase().startsWith(inner.toLowerCase());
         }
 
+        //TODO: needs an alternative implementation due to locale issues on toLowerCase()
         public Predicate<String> endsWithIgnoreCase(final String inner) {
-            return outer -> outer.endsWith(inner);
+            return outer -> outer.toLowerCase().endsWith(inner.toLowerCase());
         }
 
         public Predicate<String> hasLengthGreaterThan(final int minLength) {
@@ -91,6 +93,7 @@ public interface StringPredicates {
             return outer -> outer.contains(inner);
         }
 
+        //TODO: needs an alternative implementation due to locale issues on toLowerCase()
         public Predicate<String> containsIgnoreCase(final String inner) {
             return outer -> outer.toLowerCase().contains(inner.toLowerCase());
         }

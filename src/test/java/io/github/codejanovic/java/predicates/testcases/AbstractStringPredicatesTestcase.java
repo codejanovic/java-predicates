@@ -38,13 +38,11 @@ public abstract class AbstractStringPredicatesTestcase {
         assertThat(checking.endsWith("two")).accepts("onetwo", "ONEtwo").rejects("oneTWO", "threefour");
     }
 
-    @Ignore("missing implementation")
     @Test
     public void testStartsWithIgnoreCase() {
         assertThat(checking.startsWithIgnoreCase("one")).accepts("onetwo", "ONEtwo").rejects("threefour");
     }
 
-    @Ignore("missing implementation")
     @Test
     public void testEndsWithIgnoreCase() {
         assertThat(checking.endsWithIgnoreCase("two")).accepts("onetwo", "oneTWO").rejects("threefour");
