@@ -22,7 +22,7 @@ So lets be naive and try to check that a given `String` conforms to a valid `.de
         }
     }
 ```
-So basically this code has two issues, a major and a minor one. the **major** one is that whenever the condition on what a valid `URL` is changes, you have to change the `if` statement. the **minor** one is that its not as fluent as it could be for the reader.
+Basically this code has two issues, a major and a minor one. the **major** one is that whenever the condition on what a valid `URL` is changes, you have to change the `if` statement. the **minor** one is that its not as fluent as it could be for the reader.
 
 Now lets use a separate `method` and the `Predicate<T>` interface from Java 8 to fix our major issue ...
 ```java
