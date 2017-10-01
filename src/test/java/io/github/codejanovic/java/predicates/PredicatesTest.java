@@ -8,9 +8,7 @@ import org.junit.Test;
 import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.jusecase.Builders.a;
-import static org.jusecase.Builders.list;
-import static org.jusecase.Builders.of;
+import static org.jusecase.Builders.*;
 
 public class PredicatesTest {
     private final Predicates well = new Predicates.Default();
@@ -44,5 +42,19 @@ public class PredicatesTest {
                     .and(it.containsNoneOf("three", "four")))
                 .accepts(a(list(of("one", "five", "ten"))))
                 .rejects(null, a(list(of("one", "five", "ten", "four"))));
+    }
+
+    @Test
+    public void testChainingPredicates() {
+        final Predicate<String> spec = well.let().string().startsWith("a");
+        final String[] elements = {"a", "b", "c", "d"};
+        assertThat(well.check().that().anyMatch(spec, elements))
+                .isTrue();
+        assertThat(well.check().that().noneMatch(spec, elements))
+                .isFalse();
+        assertThat(well.check().that().allMatch(spec, elements))
+                .isFalse();
+
+
     }
 }

@@ -6,12 +6,27 @@ import io.github.codejanovic.java.predicates.objects.ObjectPredicates;
 import io.github.codejanovic.java.predicates.primitives.IntegerPredicates;
 import io.github.codejanovic.java.predicates.primitives.StringPredicates;
 
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+
 public interface Predicates {
     StringPredicates string();
     IntegerPredicates integer();
     ArrayPredicates array();
     ObjectPredicates object();
     CollectionPredicates collection();
+
+    default <T> boolean anyMatch(Predicate<T> spec, T... elements) {
+        return Stream.of(elements).anyMatch(spec);
+    }
+
+    default <T> boolean noneMatch(Predicate<T> spec, T... elements) {
+        return Stream.of(elements).noneMatch(spec);
+    }
+
+    default <T> boolean allMatch(Predicate<T> spec, T... elements) {
+        return Stream.of(elements).allMatch(spec);
+    }
 
     default Predicates let() {
         return this;
