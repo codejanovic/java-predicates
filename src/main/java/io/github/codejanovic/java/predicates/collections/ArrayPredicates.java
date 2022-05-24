@@ -1,6 +1,7 @@
 package io.github.codejanovic.java.predicates.collections;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.function.Predicate;
 
 public interface ArrayPredicates {
@@ -56,7 +57,7 @@ public interface ArrayPredicates {
 
         @Override
         public <T> Predicate<T[]> containsAllOf(T[] elements) {
-            return outer -> Arrays.asList(outer).containsAll(Arrays.asList(elements));
+            return outer -> new HashSet<>(Arrays.asList(outer)).containsAll(Arrays.asList(elements));
         }
 
         @Override
